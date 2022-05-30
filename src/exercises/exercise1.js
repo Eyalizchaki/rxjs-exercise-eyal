@@ -1,7 +1,7 @@
 const {fromHttpRequest} = require('../utils/http');
+const {take, map, mergeAll} = require("rxjs/operators");
 
 fromHttpRequest('https://orels-moviedb.herokuapp.com/directors')
     .pipe(
-        // add the proper operators to emit the correct information
-    )
-    .subscribe(console.log);
+        mergeAll(), take(1)
+    ).subscribe(val => console.log(val));
